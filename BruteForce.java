@@ -1,7 +1,6 @@
 import java.io.*;
 class BruteForce
 {
-	File f=new File("dictionary.txt");
 	File aFile=new File("aFile.txt");
 	File bFile=new File("bFile.txt");
 	File cFile=new File("cFile.txt");
@@ -23,8 +22,8 @@ class BruteForce
 	File sFile=new File("sFile.txt");
 	File tFile=new File("tFile.txt");
 	File uFile=new File("uFile.txt");
-	File vFile=new File("vFile.txt");
 	File wFile=new File("wFile.txt");
+	File vFile=new File("vFile.txt");
 	File xFile=new File("xFile.txt");
 	File yFile=new File("yFile.txt");
 	File zFile=new File("zFile.txt");
@@ -37,35 +36,101 @@ class BruteForce
 		String str=br.readLine();
 		while(str!=null)
 		{
-			str=action(str,"");
-			
+			System.out.println(action(str));
+			//pw.println(action(str));
 			str=br.readLine();
 		}
+		System.out.println("Process Completed!!!");
 	}
-	String action(String str,String temp)
+	String action(String str)throws IOException
 	{
-		int i,j,x;
+		int i,j,x;String temp="";
 		for(i=1;i<26;i++)
 		{
 			temp="";
 			for(j=0;j<str.length();j++)
 			{
 				x=str.charAt(j);
-				if(x!=32)
-				{
-					x-=96;
-					x+=i;
-					x%=26;
-					x+=96;
-				}
+				x+=i;
+				if(x>122)
+					x-=26;
 				temp+=(char)x;
 			}
-			if(sense(temp)!=true)
+			//System.out.println(temp);
+			if(sense(temp)==true)
+				return temp;
+		}
+		return "";
+	}
+	boolean sense(String str)throws IOException
+	{
+		//File file=new File("dictionary.txt");
+		BufferedReader in=new BufferedReader(new InputStreamReader(new FileInputStream(aFile)));
+		switch(str.charAt(0))
+		{
+			case 'b':	in=new BufferedReader(new InputStreamReader(new FileInputStream(bFile)));
+						break;
+			case 'c':	in=new BufferedReader(new InputStreamReader(new FileInputStream(cFile)));
+						break;
+			case 'd':	in=new BufferedReader(new InputStreamReader(new FileInputStream(dFile)));
+						break;
+			case 'e':	in=new BufferedReader(new InputStreamReader(new FileInputStream(eFile)));
+						break;
+			case 'f':	in=new BufferedReader(new InputStreamReader(new FileInputStream(fFile)));
+						break;
+			case 'g':	in=new BufferedReader(new InputStreamReader(new FileInputStream(gFile)));
+						break;
+			case 'h':	in=new BufferedReader(new InputStreamReader(new FileInputStream(hFile)));
+						break;
+			case 'i':	in=new BufferedReader(new InputStreamReader(new FileInputStream(iFile)));
+						break;
+			case 'j':	in=new BufferedReader(new InputStreamReader(new FileInputStream(jFile)));
+						break;
+			case 'k':	in=new BufferedReader(new InputStreamReader(new FileInputStream(kFile)));
+						break;
+			case 'l':	in=new BufferedReader(new InputStreamReader(new FileInputStream(lFile)));
+						break;
+			case 'm':	in=new BufferedReader(new InputStreamReader(new FileInputStream(mFile)));
+						break;
+			case 'n':	in=new BufferedReader(new InputStreamReader(new FileInputStream(nFile)));
+						break;
+			case 'o':	in=new BufferedReader(new InputStreamReader(new FileInputStream(oFile)));
+						break;
+			case 'p':	in=new BufferedReader(new InputStreamReader(new FileInputStream(pFile)));
+						break;
+			case 'q':	in=new BufferedReader(new InputStreamReader(new FileInputStream(qFile)));
+						break;
+			case 'r':	in=new BufferedReader(new InputStreamReader(new FileInputStream(rFile)));
+						break;
+			case 's':	in=new BufferedReader(new InputStreamReader(new FileInputStream(sFile)));
+						break;
+			case 't':	in=new BufferedReader(new InputStreamReader(new FileInputStream(tFile)));
+						break;
+			case 'u':	in=new BufferedReader(new InputStreamReader(new FileInputStream(uFile)));
+						break;
+			case 'v':	in=new BufferedReader(new InputStreamReader(new FileInputStream(vFile)));
+						break;
+			case 'w':	in=new BufferedReader(new InputStreamReader(new FileInputStream(wFile)));
+						break;
+			case 'x':	in=new BufferedReader(new InputStreamReader(new FileInputStream(xFile)));
+						break;
+			case 'y':	in=new BufferedReader(new InputStreamReader(new FileInputStream(yFile)));
+						break;
+			case 'z':	in=new BufferedReader(new InputStreamReader(new FileInputStream(zFile)));
+						break;
+		}
+		String word=in.readLine();
+		while(word!=null)
+		{
+			word=word.toLowerCase();
+			if(word.equalsIgnoreCase(str)==true)
+				return true;
+			if(str.compareTo(word)<0)
 				break;
 		}
+		return false;
 	}
-	
-	public static void main(String args[])
+	public static void main(String args[])throws IOException
 	{
 		BruteForce o=new BruteForce();
 		o.work();
